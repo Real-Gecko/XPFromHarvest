@@ -47,7 +47,7 @@ public class HarvestHandler {
                 harvest = true;
         }
 
-        if (harvest && random.nextInt(100) <= Config.instance.chance - 1)
+        if (harvest && random.nextInt(100) <= Config.instance.chance)
             block.dropXpOnBlockBreak(event.getWorld(), event.getPos(), 1);
     }
 
@@ -87,7 +87,7 @@ public class HarvestHandler {
             EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
             world.spawnEntity(entityItem);
         }
-        if (random.nextInt(100) <= Config.instance.chance - 1) {
+        if (random.nextInt(100) <= Config.instance.chance) {
             EntityXPOrb xpOrb = new EntityXPOrb(world, pos.getX(), pos.getY(), pos.getZ(), 1);
             world.spawnEntity(xpOrb);
         }

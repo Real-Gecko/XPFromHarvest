@@ -18,7 +18,7 @@ public class Config {
                 1,
                 100,
                 "Chance in % of XP orb spawning after harvest done"
-        );
-        if(config.hasChanged()) config.save();
+        ) - 1;
+        if (config.hasChanged()) config.save();
     }
 }
