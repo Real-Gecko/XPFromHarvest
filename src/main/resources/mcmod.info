@@ -4,5 +4,6 @@
     "description": "Literally harvest XP",
     "version": "${version}",
     "mcversion": "${mcversion}",
+    "url": "https://minecraft.curseforge.com/projects/xp-from-harvest",
     "authorList": ["RealGecko"]
 }]

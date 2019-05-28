@@ -1,0 +1,12 @@
+{
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "window.zoomLevel": 0.8,
+    "debug.console.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "editor.fontSize": 16
+}

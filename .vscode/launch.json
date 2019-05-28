@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Client",
+            "request": "launch",
+            "mainClass": "GradleStart",
+            "cwd": "${workspaceFolder}/run/client",
+            "vmArgs": "-Xms256m -Xmx1024m"
+        },
+        {
+            "type": "java",
+            "name": "Run Server",
+            "request": "launch",
+            "mainClass": "GradleStartServer",
+            "cwd": "${workspaceFolder}/run/server",
+            "vmArgs": "-Xms256m -Xmx1024m"
+        }
+    ]
+}
