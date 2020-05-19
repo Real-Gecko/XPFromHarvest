@@ -1,10 +1,9 @@
 package com.realgecko.xpfromharvest;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -12,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -19,28 +19,22 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Adds easier crop harvesting and replanting with right click and adds XP on
- * successfull harvest
+ * successful harvest
  */
 
-public class RightClickHandler {
+public class SimpleHarvestHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleRightClick(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getEntityPlayer() == null || event.getEntityPlayer().world.isRemote)
-            return;
+
+        if (!(event.getWorld() instanceof WorldServer)) return;
 
         World world = event.getWorld();
-        IBlockState state = world.getBlockState(event.getPos());
-        Block block = state.getBlock();
         BlockPos pos = event.getPos();
+        IBlockState state = world.getBlockState(pos);
+        Block block = state.getBlock();
 
-        if (block instanceof BlockCrops)
-            if (((BlockCrops) block).isMaxAge(state))
-                handleHarvest(block, world, pos, state, world.rand);
-
-        if (block instanceof BlockNetherWart) {
-            int meta = block.getMetaFromState(state);
-            if (meta == 3)
-                handleHarvest(block, world, pos, state, event.getWorld().rand);
+        if (Arrays.asList(ModConfig.crops).contains(state.toString())) {
+            handleHarvest(block, world, pos, state, world.rand);
         }
     }
 
