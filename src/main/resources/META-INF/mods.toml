@@ -1,0 +1,23 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+[[mods]]
+modId="xpfromharvest"
+version="1.2.0"
+displayName="XP From Harvest"
+displayURL="https://minecraft.curseforge.com/projects/xp-from-harvest"
+authors="RealGecko"
+description='''
+Literally harvest XP
+'''
+[[dependencies.xpfromharvest]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.xpfromharvest]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"

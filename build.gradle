@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.145', changing: true
     }
 }
         
@@ -24,23 +24,35 @@ minecraft {
     // Default run configurations.
     runs {
         client {
-            workingDirectory project.file('run/client')
+            workingDirectory project.file("run/${mc_version}/client")
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                xpfromharvest {
+                    source sourceSets.main
+                }
+            }
         }
 
         server {
-            workingDirectory project.file('run/server')
+            workingDirectory project.file("run/${mc_version}/server")
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                xpfromharvest {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
@@ -52,23 +64,4 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 }
 
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", "${mod_version}"
-    inputs.property "mcversion", "${mc_version}"
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        // replace version and mcversion
-        expand 'version':"${mod_version}", 'mcversion':"${mc_version}"
-    }
-
-    // copy everything else except the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
-
-sourceSets { main { output.resourcesDir = output.classesDir } }
+// sourceSets { main { output.resourcesDir = output.classesDir } }
