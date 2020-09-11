@@ -2,6 +2,7 @@ package com.realgecko.xpfromharvest;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -23,6 +24,6 @@ public class BlockBreakHandler {
             harvest = true;
 
         if (harvest && (event.getWorld().getRandom().nextInt(100) + 1) <= ModConfig.chance.get())
-            block.dropXpOnBlockBreak(event.getWorld().getWorld(), event.getPos(), ModConfig.xpAmount.get());
+            block.dropXpOnBlockBreak((ServerWorld) event.getWorld(), event.getPos(), ModConfig.xpAmount.get());
     }
 }

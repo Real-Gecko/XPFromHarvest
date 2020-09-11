@@ -1,5 +1,6 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[34,)"
+license="GNU LGPLv3"
 [[mods]]
 modId="xpfromharvest"
 version="1.2.0"
@@ -12,12 +13,12 @@ Literally harvest XP
 [[dependencies.xpfromharvest]]
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[34,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.xpfromharvest]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.3]"
     ordering="NONE"
     side="BOTH"
