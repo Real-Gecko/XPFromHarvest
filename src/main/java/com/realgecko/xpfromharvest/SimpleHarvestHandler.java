@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockNamedItem;
@@ -61,7 +62,9 @@ public class SimpleHarvestHandler {
         }
 
         if ((rand.nextInt(100) + 1) <= ModConfig.chance.get()) {
-            player.giveExperiencePoints(ModConfig.xpAmount.get());
+            ExperienceOrbEntity xpOrb = new ExperienceOrbEntity(world, (double) pos.getX(), (double) pos.getY(),
+                    (double) pos.getZ(), ModConfig.xpAmount.get());
+            world.addEntity(xpOrb);
         }
         world.setBlockState(pos, block.getDefaultState());
     }
