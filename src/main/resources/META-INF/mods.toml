@@ -1,9 +1,9 @@
 modLoader="javafml"
-loaderVersion="[34,)"
+loaderVersion="[32,)"
 license="GNU LGPLv3"
 [[mods]]
 modId="xpfromharvest"
-version="1.2.0"
+version="1.2.1"
 displayName="XP From Harvest"
 displayURL="https://minecraft.curseforge.com/projects/xp-from-harvest"
 authors="RealGecko"
@@ -13,12 +13,12 @@ Literally harvest XP
 [[dependencies.xpfromharvest]]
     modId="forge"
     mandatory=true
-    versionRange="[34,)"
+    versionRange="[32,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.xpfromharvest]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16.1]"
     ordering="NONE"
     side="BOTH"
