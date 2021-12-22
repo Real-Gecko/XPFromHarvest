@@ -57,7 +57,7 @@ public class XPFromHarvest
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
-        //LOGGER.info("HELLO FROM PREINIT");
+        LOGGER.info("XPFromHarvest Preinit");
         //LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
@@ -87,9 +87,10 @@ public class XPFromHarvest
 
 	        BlockState state = event.getWorld().getBlockState(event.getPos());
 	        Block block = state.getBlock();
+	        BlockState defaultState = block.defaultBlockState();
 	        boolean harvest = false;
 
-	        if(block instanceof IPlantable) {
+	        if(!state.equals(defaultState) && block instanceof IPlantable) {
 	            harvest = true;
 	        }
 
@@ -111,8 +112,9 @@ public class XPFromHarvest
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
-
-        if(block instanceof IPlantable) {
+        BlockState defaultState = block.defaultBlockState();
+       
+        if(!state.equals(defaultState) && block instanceof IPlantable) { //if is in default state do not harvest, ex : grass
             handleHarvest(block, world, pos, state);
         }
     }
@@ -120,15 +122,17 @@ public class XPFromHarvest
 	 void handleHarvest(Block block, World world, BlockPos pos, BlockState state) {
         List<ItemStack> drops = NonNullList.create();
         drops=Block.getDrops(state, (ServerWorld) world, pos, null);
+        if (drops.size()==1) return;
 
         boolean foundSeed = false;
-        for (ItemStack stack : drops) {
-            if ((stack.getItem() instanceof IPlantable) && !foundSeed) {
+        for (ItemStack drop : drops) {
+        	//do not spawn the first seed
+            if ((drop.getItem() instanceof IPlantable) && !foundSeed) {
                 foundSeed = true;
-                continue;
+            }else {
+            	ItemEntity entityItem = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), drop);            
+            	world.addFreshEntity(entityItem);
             }
-            ItemEntity entityItem = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack);            
-            world.addFreshEntity(entityItem);            
         }
         
         double chance=OptionsHolder.COMMON.Chance.get();
