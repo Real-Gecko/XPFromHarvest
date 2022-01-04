@@ -1,25 +1,25 @@
-modLoader="javafml"
-loaderVersion="[35,)"
-license="GNU LGPLv3"
-issueTrackerURL="https://github.com/Real-Gecko/XPFromHarvest/issues"
+modLoader = "javafml"
+loaderVersion = "[36,)"
+license = "GNU LGPLv3"
+issueTrackerURL = "https://github.com/Real-Gecko/XPFromHarvest/issues"
 [[mods]]
-modId="xpfromharvest"
-version="1.2.1"
-displayName="XP From Harvest"
-displayURL="https://minecraft.curseforge.com/projects/xp-from-harvest"
-authors="RealGecko"
-description='''
+modId = "xpfromharvest"
+version = "1.2.2"
+displayName = "XP From Harvest"
+displayURL = "https://minecraft.curseforge.com/projects/xp-from-harvest"
+authors = "RealGecko"
+description = '''
 Literally harvest XP
 '''
 [[dependencies.xpfromharvest]]
-    modId="forge"
-    mandatory=true
-    versionRange="[35,)"
-    ordering="NONE"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
 [[dependencies.xpfromharvest]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.4]"
-    ordering="NONE"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5]"
+ordering = "NONE"
+side = "BOTH"

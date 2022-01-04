@@ -13,8 +13,6 @@ public class XPFromHarvest {
     private SimpleHarvestHandler simpleHarvestHandler;
     private CuriosityHandler curiosityHandler;
 
-//    public static XPFromHarvest instance;
-
     public XPFromHarvest() {
         blockBreakHandler = new BlockBreakHandler();
         simpleHarvestHandler = new SimpleHarvestHandler();
@@ -24,7 +22,6 @@ public class XPFromHarvest {
         MinecraftForge.EVENT_BUS.register(blockBreakHandler);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-//        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::configChanged);
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
@@ -37,18 +34,18 @@ public class XPFromHarvest {
             MinecraftForge.EVENT_BUS.register(curiosityHandler);
     }
 
-//    public void configChanged(ConfigChangedEvent event) {
-//        LOGGER.info("configChanged");
-//        if(event.getModID().equals(MODID)) {
-//            if (ModConfig.simpleHarvest.get())
-//                MinecraftForge.EVENT_BUS.register(simpleHarvestHandler);
-//            else
-//                MinecraftForge.EVENT_BUS.unregister(simpleHarvestHandler);
-//
-//            if (ModConfig.curiosity.get())
-//                MinecraftForge.EVENT_BUS.register(curiosityHandler);
-//            else
-//                MinecraftForge.EVENT_BUS.unregister(curiosityHandler);
-//        }
-//    }
+    // public void configChanged(ConfigChangedEvent event) {
+    // LOGGER.info("configChanged");
+    // if(event.getModID().equals(MODID)) {
+    // if (ModConfig.simpleHarvest.get())
+    // MinecraftForge.EVENT_BUS.register(simpleHarvestHandler);
+    // else
+    // MinecraftForge.EVENT_BUS.unregister(simpleHarvestHandler);
+    //
+    // if (ModConfig.curiosity.get())
+    // MinecraftForge.EVENT_BUS.register(curiosityHandler);
+    // else
+    // MinecraftForge.EVENT_BUS.unregister(curiosityHandler);
+    // }
+    // }
 }

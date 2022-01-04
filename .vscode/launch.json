@@ -7,20 +7,20 @@
       "request": "launch",
       "mainClass": "net.minecraftforge.userdev.LaunchTesting",
       "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.16.4/client",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dSCAN,REGISTRIES,REGISTRYDUMP",
+      "cwd": "${workspaceFolder}/run/1.16.5/client",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -XX:+IgnoreUnrecognizedVMOptions --add-exports\u003djava.base/sun.security.util\u003dALL-UNNAMED --add-exports\u003djdk.naming.dns/com.sun.jndi.dns\u003djava.naming --add-opens\u003djava.base/java.util.jar\u003dALL-UNNAMED",
       "args": "",
       "env": {
         "MOD_CLASSES": "xpfromharvest%%${workspaceFolder}/bin/main:xpfromharvest%%${workspaceFolder}/bin/main",
-        "MCP_MAPPINGS": "snapshot_20201028-1.16.3",
-        "MCP_VERSION": "20201102.104115",
-        "FORGE_VERSION": "35.1.4",
+        "MCP_MAPPINGS": "official_1.16.5",
+        "MCP_VERSION": "20210115.111550",
+        "FORGE_VERSION": "36.2.20",
         "assetIndex": "1.16",
         "assetDirectory": "/home/realgecko/.gradle/caches/forge_gradle/assets",
         "nativesDirectory": "${workspaceFolder}/build/natives",
         "FORGE_GROUP": "net.minecraftforge",
         "target": "fmluserdevclient",
-        "MC_VERSION": "1.16.4"
+        "MC_VERSION": "1.16.5"
       }
     },
     {
@@ -29,17 +29,17 @@
       "request": "launch",
       "mainClass": "net.minecraftforge.userdev.LaunchTesting",
       "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.16.4/server",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dSCAN,REGISTRIES,REGISTRYDUMP",
+      "cwd": "${workspaceFolder}/run/1.16.5/server",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -XX:+IgnoreUnrecognizedVMOptions --add-exports\u003djava.base/sun.security.util\u003dALL-UNNAMED --add-exports\u003djdk.naming.dns/com.sun.jndi.dns\u003djava.naming --add-opens\u003djava.base/java.util.jar\u003dALL-UNNAMED",
       "args": "",
       "env": {
         "MOD_CLASSES": "xpfromharvest%%${workspaceFolder}/bin/main:xpfromharvest%%${workspaceFolder}/bin/main",
-        "MCP_MAPPINGS": "snapshot_20201028-1.16.3",
-        "MCP_VERSION": "20201102.104115",
-        "FORGE_VERSION": "35.1.4",
+        "MCP_MAPPINGS": "official_1.16.5",
+        "MCP_VERSION": "20210115.111550",
+        "FORGE_VERSION": "36.2.20",
         "FORGE_GROUP": "net.minecraftforge",
         "target": "fmluserdevserver",
-        "MC_VERSION": "1.16.4"
+        "MC_VERSION": "1.16.5"
       }
     }
   ]

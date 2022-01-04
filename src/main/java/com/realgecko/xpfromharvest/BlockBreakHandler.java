@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class BlockBreakHandler {
     @SubscribeEvent
     public void handleBlockBreak(BlockEvent.BreakEvent event) {
-        if (event.getPlayer() == null || event.getWorld().isRemote())
+        if (event.getPlayer() == null || event.getWorld().isClientSide())
             return;
 
         BlockState state = event.getWorld().getBlockState(event.getPos());
@@ -24,6 +24,6 @@ public class BlockBreakHandler {
             harvest = true;
 
         if (harvest && (event.getWorld().getRandom().nextInt(100) + 1) <= ModConfig.chance.get())
-            block.dropXpOnBlockBreak((ServerWorld) event.getWorld(), event.getPos(), ModConfig.xpAmount.get());
+            block.popExperience((ServerWorld) event.getWorld(), event.getPos(), ModConfig.xpAmount.get());
     }
 }
