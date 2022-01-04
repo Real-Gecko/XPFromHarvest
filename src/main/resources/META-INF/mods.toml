@@ -1,6 +1,7 @@
 modLoader="javafml"
-loaderVersion="[34,)"
+loaderVersion="[35,)"
 license="GNU LGPLv3"
+issueTrackerURL="https://github.com/Real-Gecko/XPFromHarvest/issues"
 [[mods]]
 modId="xpfromharvest"
 version="1.2.1"
@@ -13,12 +14,12 @@ Literally harvest XP
 [[dependencies.xpfromharvest]]
     modId="forge"
     mandatory=true
-    versionRange="[34,)"
+    versionRange="[35,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.xpfromharvest]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16.4]"
     ordering="NONE"
     side="BOTH"
