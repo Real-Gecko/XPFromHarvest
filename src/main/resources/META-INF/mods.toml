@@ -1,23 +1,23 @@
-modLoader="javafml"
-loaderVersion="[31,)"
+modLoader = "javafml"
+loaderVersion = "[31,)"
 [[mods]]
-modId="xpfromharvest"
-version="1.2.1"
-displayName="XP From Harvest"
-displayURL="https://minecraft.curseforge.com/projects/xp-from-harvest"
-authors="RealGecko"
-description='''
+modId = "xpfromharvest"
+version = "1.2.2"
+displayName = "XP From Harvest"
+displayURL = "https://minecraft.curseforge.com/projects/xp-from-harvest"
+authors = "RealGecko"
+description = '''
 Literally harvest XP
 '''
 [[dependencies.xpfromharvest]]
-    modId="forge"
-    mandatory=true
-    versionRange="[31,)"
-    ordering="NONE"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "[31,)"
+ordering = "NONE"
+side = "BOTH"
 [[dependencies.xpfromharvest]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.15.2]"
-    ordering="NONE"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.15.2]"
+ordering = "NONE"
+side = "BOTH"

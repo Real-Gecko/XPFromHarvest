@@ -1,9 +1,11 @@
 package com.realgecko.xpfromharvest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,6 +42,7 @@ public class SimpleHarvestHandler {
 
     void handleHarvest(Block block, World world, BlockPos pos, BlockState state, PlayerEntity player, Random rand) {
         List<ItemStack> drops = Block.getDrops(state, (ServerWorld) world, pos, null);
+        List<ItemStack> toRemove = new ArrayList<ItemStack>();
 
         boolean foundSeed = false;
         for (ItemStack stack : drops) {
@@ -49,11 +52,13 @@ public class SimpleHarvestHandler {
                     // So, we've found a seed for this particular crop, let's take it away
                     stack.shrink(1);
                     if (stack.getCount() == 0)
-                        drops.remove(stack);
+                        toRemove.add(stack);
                     foundSeed = true;
                 }
             }
         }
+
+        drops.removeAll(toRemove);
 
         // Now let's spawn remaining drops
         for (ItemStack stack : drops) {
