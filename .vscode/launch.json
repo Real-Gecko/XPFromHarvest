@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "runClient",
+      "request": "launch",
+      "mainClass": "net.minecraftforge.userdev.LaunchTesting",
+      "projectName": "XPFromHarvest",
+      "cwd": "${workspaceFolder}/run/1.16.3/client",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dSCAN,REGISTRIES,REGISTRYDUMP",
+      "args": "",
+      "env": {
+        "MOD_CLASSES": "xpfromharvest%%${workspaceFolder}/bin/main:xpfromharvest%%${workspaceFolder}/bin/main",
+        "MCP_MAPPINGS": "snapshot_20200514-1.16",
+        "MCP_VERSION": "20200910.110331",
+        "FORGE_VERSION": "34.0.0",
+        "assetIndex": "1.16",
+        "assetDirectory": "/home/realgecko/.gradle/caches/forge_gradle/assets",
+        "nativesDirectory": "${workspaceFolder}/build/natives",
+        "FORGE_GROUP": "net.minecraftforge",
+        "target": "fmluserdevclient",
+        "MC_VERSION": "1.16.3"
+      }
+    },
+    {
+      "type": "java",
+      "name": "runServer",
+      "request": "launch",
+      "mainClass": "net.minecraftforge.userdev.LaunchTesting",
+      "projectName": "XPFromHarvest",
+      "cwd": "${workspaceFolder}/run/1.16.3/server",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dSCAN,REGISTRIES,REGISTRYDUMP",
+      "args": "",
+      "env": {
+        "MOD_CLASSES": "xpfromharvest%%${workspaceFolder}/bin/main:xpfromharvest%%${workspaceFolder}/bin/main",
+        "MCP_MAPPINGS": "snapshot_20200514-1.16",
+        "MCP_VERSION": "20200910.110331",
+        "FORGE_VERSION": "34.0.0",
+        "FORGE_GROUP": "net.minecraftforge",
+        "target": "fmluserdevserver",
+        "MC_VERSION": "1.16.3"
+      }
+    }
+  ]
+}
