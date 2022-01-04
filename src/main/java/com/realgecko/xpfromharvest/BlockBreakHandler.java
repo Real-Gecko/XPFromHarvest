@@ -1,8 +1,8 @@
 package com.realgecko.xpfromharvest;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -24,6 +24,6 @@ public class BlockBreakHandler {
             harvest = true;
 
         if (harvest && (event.getWorld().getRandom().nextInt(100) + 1) <= ModConfig.chance.get())
-            block.popExperience((ServerWorld) event.getWorld(), event.getPos(), ModConfig.xpAmount.get());
+            block.popExperience((ServerLevel) event.getWorld(), event.getPos(), ModConfig.xpAmount.get());
     }
 }

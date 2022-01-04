@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,7 +29,7 @@ public class SimpleHarvestHandler {
         if (event.getPlayer() == null || event.getWorld().isClientSide())
             return;
 
-        World world = event.getWorld();
+        Level world = event.getWorld();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
@@ -40,14 +39,14 @@ public class SimpleHarvestHandler {
         }
     }
 
-    void handleHarvest(Block block, World world, BlockPos pos, BlockState state, PlayerEntity player, Random rand) {
-        List<ItemStack> drops = Block.getDrops(state, (ServerWorld) world, pos, null);
+    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state, Player player, Random rand) {
+        List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, pos, null);
         List<ItemStack> toRemove = new ArrayList<ItemStack>();
         boolean foundSeed = false;
         for (ItemStack stack : drops) {
             // Seeds are BlockNamedItem whose block is equal to crop it's able to produce
-            if (stack.getItem() instanceof BlockNamedItem && !foundSeed) {
-                if (((BlockNamedItem) stack.getItem()).getBlock() == block) {
+            if (stack.getItem() instanceof BlockItem && !foundSeed) {
+                if (((BlockItem) stack.getItem()).getBlock() == block) {
                     // So, we've found a seed for this particular crop, let's take it away
                     stack.shrink(1);
                     if (stack.getCount() == 0)
@@ -66,9 +65,7 @@ public class SimpleHarvestHandler {
         }
 
         if ((rand.nextInt(100) + 1) <= ModConfig.chance.get()) {
-            ExperienceOrbEntity xpOrb = new ExperienceOrbEntity(world, (double) pos.getX(), (double) pos.getY(),
-                    (double) pos.getZ(), ModConfig.xpAmount.get());
-            world.addFreshEntity(xpOrb);
+            player.giveExperiencePoints(ModConfig.xpAmount.get());
         }
         world.setBlockAndUpdate(pos, block.defaultBlockState());
     }
