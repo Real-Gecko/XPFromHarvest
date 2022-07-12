@@ -1,8 +1,6 @@
 package com.realgecko.xpfromharvest;
 
-import java.util.UUID;
-
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -15,7 +13,7 @@ public class CuriosityHandler {
             return;
         if (event.getPlayer().isCrouching()) {
             BlockState state = event.getWorld().getBlockState(event.getPos());
-            event.getPlayer().sendMessage(new TextComponent(state.toString()), new UUID(0, 0));
+            event.getPlayer().displayClientMessage(Component.translatable(state.toString()), false);
         }
     }
 }

@@ -2,10 +2,10 @@ package com.realgecko.xpfromharvest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -39,7 +39,7 @@ public class SimpleHarvestHandler {
         }
     }
 
-    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state, Player player, Random rand) {
+    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state, Player player, RandomSource rand) {
         List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, pos, null);
         List<ItemStack> toRemove = new ArrayList<ItemStack>();
         boolean foundSeed = false;
