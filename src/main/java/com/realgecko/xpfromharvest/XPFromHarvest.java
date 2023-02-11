@@ -1,5 +1,9 @@
 package com.realgecko.xpfromharvest;
 
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -8,6 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(XPFromHarvest.MODID)
 public class XPFromHarvest {
     public static final String MODID = "xpfromharvest";
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     private BlockBreakHandler blockBreakHandler;
     private SimpleHarvestHandler simpleHarvestHandler;

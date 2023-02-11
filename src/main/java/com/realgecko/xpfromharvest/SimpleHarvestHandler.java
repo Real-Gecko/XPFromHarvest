@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -22,6 +25,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  * successful harvest
  */
 
+@SuppressWarnings("deprecation")
 public class SimpleHarvestHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleRightClick(PlayerInteractEvent.RightClickBlock event) {
@@ -33,15 +37,47 @@ public class SimpleHarvestHandler {
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
-
-        if (ModConfig.crops.get().contains(state.toString())) {
-            handleHarvest(block, world, pos, state, event.getEntity(), world.random);
-        }
+        
+		ResourceLocation rLoc = Registry.BLOCK.getKey(block);
+        
+		if (ModConfig.cropMap.containsKey(rLoc.toString())) {
+			CropData data = ModConfig.cropMap.get(rLoc.toString());
+			
+			if (data.getAge() == CropData.getAgeFromBlockState(state)) {
+				if (data.getRightClick())
+					handleRightclick(block, world, pos, state, event.getEntity(), world.random, data);
+				else
+					handleHarvest(block, world, pos, state, event.getEntity(), world.random, data);
+			}
+		}
+    }
+    
+    void handleRightclick(Block block, Level world, BlockPos pos, BlockState state, Player player, RandomSource rand, CropData data) {
+    	if (data.getForceFortune())
+    		dropItems(block, world, pos, state, player, data);
+    	giveExperience(rand, player);
     }
 
-    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state, Player player, RandomSource rand) {
-        List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, pos, null);
+    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state, Player player, RandomSource rand, CropData data) {
+    	dropItems(block, world, pos, state, player, data);
+        giveExperience(rand, player);
+        
+        // Reset block
+        world.setBlockAndUpdate(pos, block.defaultBlockState());
+    }
+    
+    void giveExperience(RandomSource rand, Player player) {
+    	if ((rand.nextInt(100) + 1) <= ModConfig.chance.get()) {
+            player.giveExperiencePoints(ModConfig.xpAmount.get());
+        }
+    }
+    
+    void dropItems(Block block, Level world, BlockPos pos, BlockState state, Player player, CropData data) {
+    	ItemStack tool = player.getItemBySlot(EquipmentSlot.MAINHAND);
+        List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, pos, null, player, tool);
         List<ItemStack> toRemove = new ArrayList<ItemStack>();
+        List<String> blacklist = data.getDropBlacklist();
+        
         boolean foundSeed = false;
         for (ItemStack stack : drops) {
             // Seeds are BlockNamedItem whose block is equal to crop it's able to produce
@@ -54,6 +90,10 @@ public class SimpleHarvestHandler {
                     foundSeed = true;
                 }
             }
+
+            // Check blacklist
+    		if (blacklist.contains(Registry.ITEM.getKey(stack.getItem()).toString()))
+    			toRemove.add(stack);
         }
 
         drops.removeAll(toRemove);
@@ -63,10 +103,5 @@ public class SimpleHarvestHandler {
             ItemEntity entityItem = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack);
             world.addFreshEntity(entityItem);
         }
-
-        if ((rand.nextInt(100) + 1) <= ModConfig.chance.get()) {
-            player.giveExperiencePoints(ModConfig.xpAmount.get());
-        }
-        world.setBlockAndUpdate(pos, block.defaultBlockState());
     }
 }
