@@ -9,11 +9,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class CuriosityHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleRightClick(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getPlayer() == null || event.getWorld().isClientSide())
+        if (event.getEntity() == null || event.getLevel().isClientSide())
             return;
-        if (event.getPlayer().isCrouching()) {
-            BlockState state = event.getWorld().getBlockState(event.getPos());
-            event.getPlayer().displayClientMessage(Component.translatable(state.toString()), false);
+        if (event.getEntity().isCrouching()) {
+            BlockState state = event.getLevel().getBlockState(event.getPos());
+            event.getEntity().displayClientMessage(Component.translatable(state.toString()), false);
         }
     }
 }

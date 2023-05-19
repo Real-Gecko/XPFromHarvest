@@ -26,16 +26,16 @@ public class SimpleHarvestHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleRightClick(PlayerInteractEvent.RightClickBlock event) {
 
-        if (event.getPlayer() == null || event.getWorld().isClientSide())
+        if (event.getEntity() == null || event.getLevel().isClientSide())
             return;
 
-        Level world = event.getWorld();
+        Level world = event.getLevel();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
         if (ModConfig.crops.get().contains(state.toString())) {
-            handleHarvest(block, world, pos, state, event.getPlayer(), world.random);
+            handleHarvest(block, world, pos, state, event.getEntity(), world.random);
         }
     }
 
