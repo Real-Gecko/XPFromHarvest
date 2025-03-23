@@ -7,12 +7,12 @@
       "request": "launch",
       "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
       "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.20.6/client",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dnet.minecraftforge.gradle.GradleStart.srg.srg-mcp\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dmixin.env.remapRefMap\u003dtrue -Dmixin.env.refMapRemappingFile\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Dforge.enableGameTest\u003dtrue -Djava.net.preferIPv6Addresses\u003dsystem",
+      "cwd": "${workspaceFolder}/run/1.21.4/client",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Dforge.enableGameTest\u003dtrue -Djava.net.preferIPv6Addresses\u003dsystem",
       "args": "--launchTarget forge_userdev_client --version MOD_DEV --assetIndex 16 --assetsDir /home/realgecko/.gradle/caches/forge_gradle/assets --gameDir .",
       "env": {
         "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.20.6"
+        "MCP_MAPPINGS": "official_1.21.4"
       },
       "preLaunchTask": "prepareRunClientCompile"
     },
@@ -23,11 +23,11 @@
       "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
       "projectName": "XPFromHarvest",
       "cwd": "${workspaceFolder}/run-data",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dnet.minecraftforge.gradle.GradleStart.srg.srg-mcp\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dmixin.env.remapRefMap\u003dtrue -Dmixin.env.refMapRemappingFile\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Djava.net.preferIPv6Addresses\u003dsystem",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Djava.net.preferIPv6Addresses\u003dsystem",
       "args": "--launchTarget forge_userdev_data --assetIndex 16 --assetsDir /home/realgecko/.gradle/caches/forge_gradle/assets --gameDir . --mod xpfromharvest --all --output /home/realgecko/Development/XPFromHarvest/src/generated/resources --existing /home/realgecko/Development/XPFromHarvest/src/main/resources",
       "env": {
         "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.20.6"
+        "MCP_MAPPINGS": "official_1.21.4"
       },
       "preLaunchTask": "prepareRunDataCompile"
     },
@@ -37,12 +37,12 @@
       "request": "launch",
       "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
       "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.20.6/gameTestServer",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dnet.minecraftforge.gradle.GradleStart.srg.srg-mcp\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dmixin.env.remapRefMap\u003dtrue -Dmixin.env.refMapRemappingFile\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Djava.net.preferIPv6Addresses\u003dsystem",
+      "cwd": "${workspaceFolder}/run/1.21.4/gameTestServer",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Djava.net.preferIPv6Addresses\u003dsystem",
       "args": "--launchTarget forge_userdev_server_gametest --gameDir .",
       "env": {
         "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.20.6"
+        "MCP_MAPPINGS": "official_1.21.4"
       },
       "preLaunchTask": "prepareRunGameTestServerCompile"
     },
@@ -52,12 +52,12 @@
       "request": "launch",
       "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
       "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.20.6/server",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dnet.minecraftforge.gradle.GradleStart.srg.srg-mcp\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dmixin.env.remapRefMap\u003dtrue -Dmixin.env.refMapRemappingFile\u003d/home/realgecko/Development/XPFromHarvest/build/createSrgToMcp/output.srg -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Dforge.enableGameTest\u003dtrue -Djava.net.preferIPv6Addresses\u003dsystem",
+      "cwd": "${workspaceFolder}/run/1.21.4/server",
+      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Dforge.enableGameTest\u003dtrue -Djava.net.preferIPv6Addresses\u003dsystem",
       "args": "--launchTarget forge_userdev_server --gameDir . --nogui",
       "env": {
         "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.20.6"
+        "MCP_MAPPINGS": "official_1.21.4"
       },
       "preLaunchTask": "prepareRunServerCompile"
     }
