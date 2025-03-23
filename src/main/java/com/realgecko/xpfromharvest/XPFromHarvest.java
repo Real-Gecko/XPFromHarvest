@@ -2,6 +2,7 @@ package com.realgecko.xpfromharvest;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -13,24 +14,25 @@ public class XPFromHarvest {
     private SimpleHarvestHandler simpleHarvestHandler;
     private CuriosityHandler curiosityHandler;
 
-    public XPFromHarvest() {
+    public XPFromHarvest(FMLJavaModLoadingContext context) {
+        // Initialize handlers
         blockBreakHandler = new BlockBreakHandler();
         simpleHarvestHandler = new SimpleHarvestHandler();
         curiosityHandler = new CuriosityHandler();
 
+        context.getModEventBus().addListener(this::commonSetup);
+
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(blockBreakHandler);
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
+        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
-        ModConfig.loadConfig();
-
-        if (ModConfig.simpleHarvest.get())
+        if (Config.simpleHarvest)
             MinecraftForge.EVENT_BUS.register(simpleHarvestHandler);
 
-        if (ModConfig.curiosity.get())
+        if (Config.curiosityMode)
             MinecraftForge.EVENT_BUS.register(curiosityHandler);
     }
 
