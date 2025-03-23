@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -26,20 +25,21 @@ public class SimpleHarvestHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleRightClick(PlayerInteractEvent.RightClickBlock event) {
 
-        if (event.getPlayer() == null || event.getWorld().isClientSide())
+        if (event.getEntity() == null || event.getLevel().isClientSide())
             return;
 
-        Level world = event.getWorld();
+        Level world = event.getLevel();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (ModConfig.crops.get().contains(state.toString())) {
-            handleHarvest(block, world, pos, state, event.getPlayer(), world.random);
+        if (Config.cropList.contains(state.toString())) {
+            handleHarvest(block, world, pos, state, event, world.random);
         }
     }
 
-    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state, Player player, RandomSource rand) {
+    void handleHarvest(Block block, Level world, BlockPos pos, BlockState state,
+            PlayerInteractEvent.RightClickBlock event, RandomSource rand) {
         List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, pos, null);
         List<ItemStack> toRemove = new ArrayList<ItemStack>();
         boolean foundSeed = false;
@@ -64,8 +64,9 @@ public class SimpleHarvestHandler {
             world.addFreshEntity(entityItem);
         }
 
-        if ((rand.nextInt(100) + 1) <= ModConfig.chance.get()) {
-            player.giveExperiencePoints(ModConfig.xpAmount.get());
+        if ((rand.nextInt(100) + 1) <= Config.chance) {
+            // player.giveExperiencePoints(Config.xpAmount);
+            block.popExperience((ServerLevel) event.getLevel(), event.getPos(), Config.xpAmount);
         }
         world.setBlockAndUpdate(pos, block.defaultBlockState());
     }
