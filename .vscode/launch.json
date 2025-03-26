@@ -3,63 +3,91 @@
   "configurations": [
     {
       "type": "java",
-      "name": "runClient",
       "request": "launch",
-      "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
-      "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.21.4/client",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Dforge.enableGameTest\u003dtrue -Djava.net.preferIPv6Addresses\u003dsystem",
-      "args": "--launchTarget forge_userdev_client --version MOD_DEV --assetIndex 16 --assetsDir /home/realgecko/.gradle/caches/forge_gradle/assets --gameDir .",
-      "env": {
-        "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.21.4"
+      "name": "Client",
+      "presentation": {
+        "group": "XP From Harvest",
+        "order": 0
       },
-      "preLaunchTask": "prepareRunClientCompile"
+      "projectName": "XPFromHarvest",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dexamplemod%%/home/realgecko/Development/XPFromHarvest/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run/1.12.4-neo/client",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
     },
     {
       "type": "java",
-      "name": "runData",
       "request": "launch",
-      "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
-      "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run-data",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Djava.net.preferIPv6Addresses\u003dsystem",
-      "args": "--launchTarget forge_userdev_data --assetIndex 16 --assetsDir /home/realgecko/.gradle/caches/forge_gradle/assets --gameDir . --mod xpfromharvest --all --output /home/realgecko/Development/XPFromHarvest/src/generated/resources --existing /home/realgecko/Development/XPFromHarvest/src/main/resources",
-      "env": {
-        "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.21.4"
+      "name": "ClientData",
+      "presentation": {
+        "group": "XP From Harvest",
+        "order": 1
       },
-      "preLaunchTask": "prepareRunDataCompile"
+      "projectName": "XPFromHarvest",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/clientDataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/clientDataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dexamplemod%%/home/realgecko/Development/XPFromHarvest/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
     },
     {
       "type": "java",
-      "name": "runGameTestServer",
       "request": "launch",
-      "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
-      "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.21.4/gameTestServer",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Djava.net.preferIPv6Addresses\u003dsystem",
-      "args": "--launchTarget forge_userdev_server_gametest --gameDir .",
-      "env": {
-        "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.21.4"
+      "name": "GameTestServer",
+      "presentation": {
+        "group": "XP From Harvest",
+        "order": 2
       },
-      "preLaunchTask": "prepareRunGameTestServerCompile"
+      "projectName": "XPFromHarvest",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003dexamplemod%%/home/realgecko/Development/XPFromHarvest/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
     },
     {
       "type": "java",
-      "name": "runServer",
       "request": "launch",
-      "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
-      "projectName": "XPFromHarvest",
-      "cwd": "${workspaceFolder}/run/1.21.4/server",
-      "vmArgs": "-Dforge.logging.console.level\u003ddebug -Dforge.logging.markers\u003dREGISTRIES -Dforge.enabledGameTestNamespaces\u003dxpfromharvest -Dforge.enableGameTest\u003dtrue -Djava.net.preferIPv6Addresses\u003dsystem",
-      "args": "--launchTarget forge_userdev_server --gameDir . --nogui",
-      "env": {
-        "MOD_CLASSES": "${workspaceFolder}/build/sourcesSets/main",
-        "MCP_MAPPINGS": "official_1.21.4"
+      "name": "Server",
+      "presentation": {
+        "group": "XP From Harvest",
+        "order": 3
       },
-      "preLaunchTask": "prepareRunServerCompile"
+      "projectName": "XPFromHarvest",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/realgecko/Development/XPFromHarvest/build/moddev/serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dexamplemod%%/home/realgecko/Development/XPFromHarvest/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run/1.12.4-neo/server",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
     }
   ]
 }
